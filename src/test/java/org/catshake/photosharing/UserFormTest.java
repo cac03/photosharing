@@ -1,5 +1,6 @@
 package org.catshake.photosharing;
 
+import org.catshake.photosharing.web.user.UserForm;
 import org.junit.jupiter.api.Test;
 
 import javax.validation.ConstraintViolation;

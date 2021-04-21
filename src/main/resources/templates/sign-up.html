@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Photo sharing</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.2/css/bulma.min.css">
+</head>
+<body>
+<section class="hero is-light is-fullheight">
+    <div class="hero-head">
+    </div>
+
+    <div class="hero-body">
+        <div class="container is-max-widescreen">
+            <div class="columns is-centered">
+                <div class="column is-one-third">
+                    <form class="box" th:action="@{/sign-up}" th:method="post" th:object="${userForm}">
+                        <div class="field">
+                            <p class="is-size-2 has-text-centered">Регистрация</p>
+                        </div>
+                        <div class="field">
+                            <div class="control">
+                                <input th:field="*{username}" name="username" class="input" type="text"
+                                       placeholder="Имя пользователя">
+                            </div>
+                            <p th:if="${#fields.hasErrors('username')}" th:errors="*{username}" class="help is-danger">
+                                Некорректное имя пользователя</p>
+                        </div>
+
+                        <div class="field">
+                            <div class="control">
+                                <input th:field="*{name}" class="input" type="text" placeholder="Имя">
+                            </div>
+                            <p th:if="${#fields.hasErrors('name')}" th:errors="*{name}" class="help is-danger">
+                                Некорректное имя</p>
+                        </div>
+
+
+                        <div class="field">
+                            <div class="control">
+                                <input th:field="*{password}" class="input" type="password" placeholder="Пароль">
+                            </div>
+                            <p th:if="${#fields.hasErrors('password')}" th:errors="*{password}" class="help is-danger">
+                                Некорректный пароль</p>
+                        </div>
+
+                        <div class="field">
+                            <div class="control">
+                                <input th:field="*{confirmPassword}" class="input" type="password"
+                                       placeholder="Подтверждение пароля">
+                            </div>
+                            <p th:if="${#fields.hasErrors('confirmPassword')}" th:errors="*{confirmPassword}"
+                               class="help is-danger">Некорректный пароль</p>
+                            <p th:if="${#fields.hasErrors('passwordMatch')}" th:errors="*{passwordMatch}"
+                               class="help is-danger">Некорректный пароль</p>
+                        </div>
+
+                        <div class="field">
+                            <div class="control">
+                                <button class="button is-link is-fullwidth">Зарегистрироваться</button>
+                            </div>
+                        </div>
+                        <div class="field">
+                            <div class="control">
+                                <a class="button is-fullwidth" th:href="@{/}">Вход</a>
+                            </div>
+                        </div>
+                    </form>
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+</body>
+</html>

@@ -1,4 +1,4 @@
-package org.catshake.photosharing;
+package org.catshake.photosharing.web;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -11,6 +11,7 @@ import java.util.Optional;
 import java.util.concurrent.ThreadLocalRandom;
 
 @Controller
+@RequestMapping("/hello-world")
 public class HelloWorldController {
     @RequestMapping("/")
     public String helloWorld(Model model, @RequestParam("name") Optional<String> name) {
