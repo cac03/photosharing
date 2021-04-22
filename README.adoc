@@ -1,0 +1,11 @@
+= Photosharing
+
+*Photosharing* - небольшое приложение, в котором можно делиться фотографиями.
+
+== Как открыть его в IDEA?
+
+. Склонировать _репозиторий_
+. File
+. New
+. Project from Existing Sources
+. Выбрать `pom.xml`
