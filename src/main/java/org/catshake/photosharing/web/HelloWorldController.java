@@ -29,7 +29,7 @@ public class HelloWorldController {
     }
 
     @RequestMapping("/home")
-    public String accountWindow(Model model){
+    public String accountWindow(Model model) {
         return "home";
     }
 }

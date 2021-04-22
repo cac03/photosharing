@@ -1,6 +1,7 @@
 package org.catshake.photosharing.web.security;
 
 import lombok.AllArgsConstructor;
+import org.catshake.photosharing.domain.User;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
@@ -9,7 +10,7 @@ import java.util.Collections;
 
 @AllArgsConstructor
 public class PhotoSharingUserDetails implements UserDetails {
-    // private final User user;
+    private final User user;
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
@@ -18,12 +19,12 @@ public class PhotoSharingUserDetails implements UserDetails {
 
     @Override
     public String getPassword() {
-        throw new UnsupportedOperationException("getPassword()");
+        return user.getPasswordHash();
     }
 
     @Override
     public String getUsername() {
-        throw new UnsupportedOperationException("getUsername()");
+        return user.getUsername();
     }
 
     @Override

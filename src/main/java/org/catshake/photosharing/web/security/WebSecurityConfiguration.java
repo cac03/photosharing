@@ -1,5 +1,6 @@
 package org.catshake.photosharing.web.security;
 
+import org.catshake.photosharing.domain.UserRepository;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationProvider;
@@ -36,8 +37,8 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
     }
 
     @Bean
-    public UserDetailsService userDetailsService(/*UserRepository userRepository*/) {
-        return new PhotoSharingUserDetailsService();
+    public UserDetailsService userDetailsService(UserRepository userRepository) {
+        return new PhotoSharingUserDetailsService(userRepository);
     }
 
     @Bean
