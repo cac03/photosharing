@@ -1,6 +1,7 @@
 package org.catshake.photosharing.web.security;
 
 import lombok.AllArgsConstructor;
+import lombok.Getter;
 import org.catshake.photosharing.domain.User;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -9,6 +10,7 @@ import java.util.Collection;
 import java.util.Collections;
 
 @AllArgsConstructor
+@Getter
 public class PhotoSharingUserDetails implements UserDetails {
     private final User user;
 

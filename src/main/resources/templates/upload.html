@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Photo sharing</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.2/css/bulma.min.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<body>
+<section class="hero is-light is-fullheight">
+    <div class="hero-head">
+    </div>
+
+    <div class="hero-body">
+        <div class="container is-max-widescreen">
+            <div class="columns is-centered">
+                <div class="column is-one-third">
+                    <form class="box" th:action="@{/photos}" th:method="post" enctype="multipart/form-data">
+                        <div class="field">
+                            <p class="is-size-4 has-text-centered">Новая фотография</p>
+                        </div>
+                        <div class="field">
+                            <div class="control">
+                                <input name="description" class="input" type="text"
+                                       placeholder="Описание">
+                            </div>
+                        </div>
+
+
+                        <div class="field">
+                            <div class="file is-fullwidth has-name">
+                                <label class="file-label">
+                                    <input class="file-input is-fullwidth" type="file" name="photo"
+                                           accept="image/jpeg, image/png">
+                                    <span class="file-cta">
+                                        <span class="file-icon">
+                                            <i class="fas fa-upload"></i>
+                                        </span>
+                                        <span class="file-label">
+                                            Выберите файл
+                                        </span>
+                                    </span>
+                                    <span class="file-name">
+                                        Имя файла
+                                    </span>
+                                </label>
+                            </div>
+                        </div>
+                        <div class="field">
+                            <div class="control">
+                                <button class="button is-link is-fullwidth">Загрузить фотографию</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<script>
+    <!-- Немного JS-->
+    document.querySelector('.file-input').addEventListener('change', function () {
+        document.querySelector('.file-name').innerHTML = this.value;
+    });
+</script>
+</body>
+</html>
