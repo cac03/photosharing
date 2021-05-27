@@ -35,7 +35,9 @@ public class UserController {
         if (bResult.hasErrors()) {
             return "sign-up";
         } else {
-            userRepository.saveUser(new User(null, userForm.getUsername(), userForm.getPassword()));
+            User user = new User(null, userForm.getUsername(), userForm.getPassword());
+            userRepository.saveUser(user);
+            logger.info("Created new user = {}", user);
             return "redirect:/";
         }
     }
