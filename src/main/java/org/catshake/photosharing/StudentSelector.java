@@ -5,16 +5,10 @@ import java.util.concurrent.ThreadLocalRandom;
 
 public class StudentSelector {
     private static final List<String> students = List.of(
-            "Андрей П.",
-            "Алексей",
-            "Андрей З.",
-            "Вика",
-            "Екатерина",
             "Катя",
-            "Людмила",
-            "Михаил",
-            "Степан",
-            "Эмин"
+            // "Михаил",
+            "Эмин",
+            "Саша"
     );
 
     public static void main(String[] args) {
