@@ -1,6 +1,8 @@
 package org.catshake.photosharing.web.photo;
 
 import lombok.AllArgsConstructor;
+import org.catshake.photosharing.domain.Post;
+import org.catshake.photosharing.domain.PostRepository;
 import org.catshake.photosharing.service.filestorage.FileStorage;
 import org.catshake.photosharing.util.DelegatingNamedResource;
 import org.catshake.photosharing.web.security.PhotoSharingUserDetails;
@@ -30,6 +32,7 @@ public class PhotoController {
     private static final Logger logger = LoggerFactory.getLogger(PhotoController.class);
 
     private final FileStorage fileStorage;
+    private final PostRepository postRepository;
 
     @GetMapping("/{name}")
     public ResponseEntity<Resource> getPhotoById(@PathVariable("name") String name) {
@@ -58,8 +61,21 @@ public class PhotoController {
     @PostMapping
     public String postPhoto(
             @AuthenticationPrincipal PhotoSharingUserDetails userDetails,
-            NewPhotoForm newPhotoForm) {
-        throw new RuntimeException("todo");
-        // return "redirect:/explore";
+            NewPhotoForm newPhotoForm
+    ) {
+        Post post = new Post();
+        post.setUserId(userDetails.getUser().getId());
+
+        // image.png -> asfdasfgkhyert.png
+        String filename = UUID.randomUUID() + "."
+                + StringUtils.getFilenameExtension(newPhotoForm.getPhoto().getOriginalFilename());
+
+        post.setFilename(filename);
+        post.setDescription(userDetails.getUser().getUsername() + ":" + newPhotoForm.getDescription());
+        post.setDate(Instant.now());
+        Post responsePost = postRepository.savePost(post);
+        logger.info("post created. id = {}", responsePost.getId());
+        fileStorage.save(new DelegatingNamedResource(newPhotoForm.getPhoto().getResource(), filename));
+        return "redirect:/explore";
     }
 }
